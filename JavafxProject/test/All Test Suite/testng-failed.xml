@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [All Test Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="/Users/tijesuolalekan/Downloads/JavafxProject(failed)">
+    <classes>
+      <class name="persistence.StaffDAOTest">
+        <methods>
+          <include name="testValidateUser"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- persistence.StaffDAOTest -->
+    </classes>
+  </test> <!-- /Users/tijesuolalekan/Downloads/JavafxProject(failed) -->
+</suite> <!-- Failed suite [All Test Suite] -->
