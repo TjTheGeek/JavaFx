@@ -16,6 +16,7 @@ public class SuperController implements Initializable {
     @FXML
     BorderPane superBorderPane;
 
+    @FXML
     protected void btnBackAction(){
         System.out.println("super Back pressed");
         goToLoginPage();
