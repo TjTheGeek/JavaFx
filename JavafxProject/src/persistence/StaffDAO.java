@@ -12,6 +12,7 @@ public class StaffDAO {
     public static boolean validUser(String name, String password) {
         boolean status = false;
 
+
         try {
             Connection con = persistence.DBMySQL.getInstance().getConnection();
             String select = "select * from Staff where UserName=? and UserPass=?";
@@ -22,12 +23,15 @@ public class StaffDAO {
             status=rs.next();
             con.close();
         } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
+
         return status;
     }//if username 'AND' password are in the db
     public static boolean checkIfExists(String userName) {
         boolean status = false;
+
         try {
             Connection con = persistence.DBMySQL.getInstance().getConnection();
             String select = "select * from Staff where UserName=?";
@@ -35,17 +39,20 @@ public class StaffDAO {
             st.setString(1, userName);
             status = st.execute();
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return status;
 
     }//checks if username is in the database
 
-    private static int lockAttempts(String userName){
+    private static int lockAttempts(String userName) throws SQLException {
        int attempts=0;
+        Connection con = persistence.DBMySQL.getInstance().getConnection();
+        if(con==null){
+            System.out.println("Error");
+        }
        try {
-            Connection con = persistence.DBMySQL.getInstance().getConnection();
             String selectSt="Select * from Staff where UserName=?";
             PreparedStatement st = con.prepareStatement(selectSt);
             st.setString(1,userName);
@@ -53,11 +60,13 @@ public class StaffDAO {
             attempts=rs.getInt("LockAttempt");//this denies them access
             con.close();
             System.out.println(attempts);
-        }
-       catch (Exception e) {
-            System.out.println(e);
-           System.out.println("LockaTTEMPT FAILED");
-        }
+        }finally {
+           try {
+               con.close();
+           } catch (SQLException throwables) {
+               throwables.printStackTrace();
+           }
+       }
      return attempts;
     }//number of attempts
 
@@ -175,7 +184,25 @@ public class StaffDAO {
     }//decrements the attempts 10>>0
 
 
-
+    public static String updateRoleData(String username, String role){
+        String msg;
+        try {
+            Connection con = persistence.DBMySQL.getInstance().getConnection();
+            String sql1 = "UPDATE Staff set role=? where UserName=?";
+            PreparedStatement st = con.prepareStatement(sql1);
+            st.setString(1, role);
+            st.setString(2, username);
+            st.executeUpdate(sql1);
+            msg = "Database updated";
+            con.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Error on Updateing Data");
+            msg = "Error on Updating Database";
+        }
+        return msg;
+    }
 
 
 
@@ -216,11 +243,12 @@ public class StaffDAO {
 
 
     public static int addUser(String userName, String userPass, String userPin, String userEmail) {
-        int status= 0;
+        int status=2;
         try {
             String role = "User";
             Connection con = persistence.DBMySQL.getInstance().getConnection();
-            PreparedStatement ps = con.prepareStatement("insert into Staff(UserName, UserPass,Role, Pin, Email) values(?,?,?,?,?)");
+            String st="insert into Staff(UserName,UserPass,Role,Pin,Email) values(?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(st);
             ps.setString(1, userName);
             ps.setString(2, userPass);
             ps.setString(3, role);
@@ -261,23 +289,6 @@ public class StaffDAO {
     }//all the staff in the database in an array
 
 
-
-    public static String updateRoleData(String username, String role ){
-        String msg="";
-        try{
-            Connection con =persistence.DBMySQL.getInstance().getConnection();
-            Statement st = con.createStatement();
-            String sql1 = "UPDATE Staff set role='"+role+"' where UserName='"+username+"'";
-            st.executeUpdate(sql1);
-            msg = "Database updated";
-           }
-            catch (Exception e){
-                e.printStackTrace();
-                System.out.println("Error on Updateing Data");
-                msg = "Error on Updating Database";
-           }
-        return msg;
-    }
 
     /*public static String deleteUser(String userName, String clause) {
         String status = "";
