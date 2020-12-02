@@ -22,7 +22,6 @@ public class StaffDAO {
             ResultSet rs = selectStatement.executeQuery();
             status=rs.next();
             con.close();
-        } catch (Exception e) {
         } catch (SQLException e) {
             System.out.println(e);
         }
