@@ -48,6 +48,7 @@ public class LoginController implements Initializable {
 
     @FXML
     protected Button  btnLogin;
+    @FXML
     protected void btnLoginAction(ActionEvent event){
         System.out.println("Login presssed");
         showMessage("Trying To Login");
