@@ -20,7 +20,7 @@ public class RegisterControllerTest {
         pass2="Lolage123";
         pin="123456";
         email="Tjief@gmail.com";
-        username="asdsda";
+        username="asdsd12";
         RegisterController rc=new RegisterController();
 
         System.out.println();
