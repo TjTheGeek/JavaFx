@@ -2,12 +2,12 @@
 <testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-12-03T22:54:55Z" name="Default Suite" finished-at="2020-12-03T22:54:58Z" duration-ms="3483">
+  <suite started-at="2020-12-03T23:05:13Z" name="Default Suite" finished-at="2020-12-03T23:05:16Z" duration-ms="2757">
     <groups>
     </groups>
-    <test started-at="2020-12-03T22:54:55Z" name="JavafxProject" finished-at="2020-12-03T22:54:58Z" duration-ms="3483">
+    <test started-at="2020-12-03T23:05:13Z" name="JavafxProject" finished-at="2020-12-03T23:05:16Z" duration-ms="2757">
       <class name="presentation.RegisterControllerTest">
-        <test-method signature="testConfirmPasswordForTest()[pri:0, instance:presentation.RegisterControllerTest@e874448]" started-at="2020-12-03T22:54:55Z" name="testConfirmPasswordForTest" finished-at="2020-12-03T22:54:58Z" duration-ms="3429" status="PASS">
+        <test-method signature="testConfirmPasswordForTest()[pri:0, instance:presentation.RegisterControllerTest@60285225]" started-at="2020-12-03T23:05:13Z" name="testConfirmPasswordForTest" finished-at="2020-12-03T23:05:16Z" duration-ms="2730" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testConfirmPasswordForTest -->
