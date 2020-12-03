@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
             showMessage("Enter valid Username and/or Password");
         }
 
-        if(validateUser(usernameTextfield.getText(), passwordTextField.getText())){//if the user is there
+        else if(validateUser(usernameTextfield.getText(), passwordTextField.getText())){//if the user is there
             if(isLockAccount(usernameTextfield.getText())){//if its locked
                 showMessage("Account Blocked, Please Contact admin");
                 System.out.println("the if is running");
