@@ -269,9 +269,11 @@ public class StaffDAO {
         String msg="";
         try{
             Connection con =persistence.DBMySQL.getInstance().getConnection();
-            Statement st = con.createStatement();
-            String sql1 = "UPDATE Staff set role='"+role+"' where UserName='"+username+"'";
-            st.executeUpdate(sql1);
+            String sql1 = "UPDATE Staff set role=? where UserName=?";
+            PreparedStatement st = con.prepareStatement(sql1);
+            st.setString(1, role);
+            st.setString(2, username);
+            st.executeUpdate();
             msg = "Database updated";
            }
             catch (Exception e){
