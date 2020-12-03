@@ -16,7 +16,6 @@ public class SHA256 {
         for (byte b : digest){
             sb.append(String.format("%02x", b & 0xff));
         }
-
         System.out.println("SHA256 Hash: " + sb.toString());
     }
 }

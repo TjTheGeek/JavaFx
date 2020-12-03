@@ -2,7 +2,7 @@ import hashlib
 
 
 def main():
-    msg = input("Enter message: ")
+    msg = 'Security Principles'
     hsh = hashlib.sha256()
 
     hsh.update(msg.encode('utf-8'))
