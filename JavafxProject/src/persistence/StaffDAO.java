@@ -177,25 +177,6 @@ public class StaffDAO {
         return  msg;
     }//decrements the attempts 10>>0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static String getRole(String name, String password) {
         String role = "";
         System.out.println("UserName: "+name);
@@ -217,7 +198,6 @@ public class StaffDAO {
 
     }
 
-
     public static int addUser(String userName, String userPass, String userPin, String userEmail) {
         int status= 0;
         try {
@@ -237,7 +217,6 @@ public class StaffDAO {
         return status;
 
     }//used to create a new user object
-
     /**/
     public static ObservableList<Staff> getAllStaff(){
         ObservableList<Staff> data= FXCollections.observableArrayList();//array holds the objects from the database
