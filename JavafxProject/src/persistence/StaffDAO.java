@@ -269,8 +269,8 @@ public class StaffDAO {
         String msg="";
         try{
             Connection con =persistence.DBMySQL.getInstance().getConnection();
-            Statement st = con.createStatement();
-            String sql1 = "UPDATE Staff set role='"+role+"' where UserName='"+username+"'";
+            PreparedStatement st = con.prepareStatement();
+            String sql1 = "UPDATE Staff seat role=? where UserName=?;
             st.executeUpdate(sql1);
             msg = "Database updated";
            }
@@ -282,27 +282,4 @@ public class StaffDAO {
         return msg;
     }
 
-    /*public static String deleteUser(String userName, String clause) {
-        String status = "";
-        try (Connection con =persistence.DBMySQL.getInstance().getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement("delete from Staff where UserName='?'")) {
-                ps.setString(1, clause);
-                ps.setString(2, userName);
-                ps.executeUpdate();
-                status = "Database updated";
-                System.out.println("database should update");
-            } catch (SQLException e) {
-                //  e.printStackTrace();
-                e.getErrorCode();
-                System.out.println("error");
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error on Updateing Data");
-            status= "Error on Updating Database";
-        }
-        return status;
-    }
-*/
 }
