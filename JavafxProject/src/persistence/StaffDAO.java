@@ -50,25 +50,14 @@ public class StaffDAO {
             PreparedStatement st = con.prepareStatement(selectSt);
             st.setString(1,userName);
             ResultSet rs=st.executeQuery();
-            attempts=rs.getInt("LockAttempt");//this gets in number of attempts
-           con.close();
+            attempts=rs.getInt("LockAttempt");//this denies them access
+            con.close();
             System.out.println(attempts);
-<<<<<<< Updated upstream
         }
        catch (Exception e) {
             System.out.println(e);
            System.out.println("LockaTTEMPT FAILED");
         }
-=======
-        }finally {
-           try {
-
-           } catch (SQLException throwables) {
-               throwables.printStackTrace();
-               System.out.println("error is here");
-           }
-       }
->>>>>>> Stashed changes
      return attempts;
     }//number of attempts
 
@@ -161,13 +150,13 @@ public class StaffDAO {
     public static String updateAttempts(String username){
         String msg="";
         if (!isLockAccount(username)){
-           /* try{
+            try{
                 msg="Password is wrong";
                 Connection con = persistence.DBMySQL.getInstance().getConnection();
                 String update = "UPDATE Staff set LockAttempt=LockAttempt-1 where UserName=?";
-                PreparedStatement updateStatement = con.prepareStatement(update);
-                updateStatement.setString(1,username);
-                updateStatement.executeUpdate();
+                PreparedStatement selectStatement = con.prepareStatement(update);
+                selectStatement.setString(1,username);
+                selectStatement.executeUpdate();
                 if(lockAttempts(username)<1){
                     updateLockedData(username,"LOCKED");
                     System.out.println("Lock ran");
@@ -177,26 +166,8 @@ public class StaffDAO {
             catch(Exception e){
                 e.printStackTrace();
                 msg="Error on Updateing Data";
-            }*/
-            try {
-                Connection con = persistence.DBMySQL.getInstance().getConnection();
-                String sql1 =  "UPDATE Staff set LockAttempt=LockAttempt-1 where UserName=?";
-                PreparedStatement st = con.prepareStatement(sql1);
-                st.setString(1, username);
-                st.execute();
-                msg = "Wrong Password";
-                if(lockAttempts(username)<1){
-                    updateLockedData(username,"LOCKED");
-                    System.out.println("Lock ran");
-                }
-                con.close();
             }
-            catch (Exception e){
-                e.printStackTrace();
-                System.out.println("Error Updating Data");
-                msg = "Error on Updating Database";
             }
-        }
         else {
             msg="Account Locked please contact admin";
         }
