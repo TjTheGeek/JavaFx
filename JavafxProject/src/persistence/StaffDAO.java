@@ -50,6 +50,7 @@ public class StaffDAO {
             PreparedStatement st = con.prepareStatement(selectSt);
             st.setString(1,userName);
             ResultSet rs=st.executeQuery();
+            rs.next();
             attempts=rs.getInt("LockAttempt");//this denies them access
             con.close();
             System.out.println(attempts);
