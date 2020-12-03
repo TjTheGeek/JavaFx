@@ -1,7 +1,6 @@
 package presentation;
-import emailChecker.CheckEmail;
-import emailChecker.Email;
-import emailChecker.EmailFactory;
+import register.Email;
+import register.EmailFactory;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +57,7 @@ public class RegisterController implements Initializable {
         confirmPassword(userName,pass1, pass2, pin, UserEmail);
 
     }
-    private void confirmPassword(String UserName,String pass1, String pass2, String pin, String UserEmail){
+    private void confirmPassword(String UserName,String pass1, String pass2, String pinEntered, String UserEmail){
         String message;
         // PWDSAME PWDLENGTH PWDDIGIT PWDCOMPROMISED
         //use of factory pattern
@@ -78,6 +77,14 @@ public class RegisterController implements Initializable {
             System.out.println("email failed");
             email=false;
         }
+        //pin check
+        boolean pin=true;
+        if(pinEntered.equals("")) {
+            pin=false;
+            showMessage("Enter Pin");
+        }
+
+        //password check
         List<Password> list = new ArrayList<Password>();
         list.add(pwd3);
         list.add(pwd4);
@@ -95,8 +102,11 @@ public class RegisterController implements Initializable {
         }
 
         if (pass&&email){//if email and password are true try add to database
-            if(StaffDAO.addUser(UserName,pass1,pin,UserEmail)==1){
+            if(StaffDAO.addUser(UserName,pass1,pinEntered,UserEmail)==1){
                 returnToLogin();
+            }
+            else if(!pin){
+                showMessage("Enter Pin");
             }
             else showMessage("Username Already Used");
         }

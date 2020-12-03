@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-11-28T19:58:04Z" name="Default Suite" finished-at="2020-11-28T19:58:04Z" duration-ms="110">
+  <suite started-at="2020-12-02T18:11:22Z" name="Default Suite" finished-at="2020-12-02T18:11:22Z" duration-ms="345">
     <groups>
     </groups>
-    <test started-at="2020-11-28T19:58:04Z" name="JavafxProject" finished-at="2020-11-28T19:58:04Z" duration-ms="110">
-      <class name="presentation.RegisterControllerTest">
-        <test-method signature="testConfirmPassword()[pri:0, instance:presentation.RegisterControllerTest@3d921e20]" started-at="2020-11-28T19:58:04Z" name="testConfirmPassword" finished-at="2020-11-28T19:58:04Z" duration-ms="34" status="PASS">
+    <test started-at="2020-12-02T18:11:22Z" name="JavafxProject" finished-at="2020-12-02T18:11:22Z" duration-ms="345">
+      <class name="presentation.LoginControllerTest">
+        <test-method signature="testTransferMessage()[pri:0, instance:presentation.LoginControllerTest@3e57cd70]" started-at="2020-12-02T18:11:22Z" name="testTransferMessage" finished-at="2020-12-02T18:11:22Z" duration-ms="36" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testConfirmPassword -->
-      </class> <!-- presentation.RegisterControllerTest -->
+        </test-method> <!-- testTransferMessage -->
+      </class> <!-- presentation.LoginControllerTest -->
     </test> <!-- JavafxProject -->
   </suite> <!-- Default Suite -->
 </testng-results>
