@@ -75,28 +75,9 @@ public class StaffDAO {
             accountStatus=rs.next();
            //if it returns a user then its locked
             con.close();
-
         }catch (Exception e){
                 System.out.println(e);
         }
-      /*  try{
-            if(LockAttempts(username)>0){
-                accountStatus=false;
-            }
-            else{
-                lockedState="LOCKED";
-                Connection con = persistence.DBMySQL.getInstance().getConnection();
-                String update = "UPDATE Staff set Locked=? where UserName=?";
-                PreparedStatement updateStatement = con.prepareStatement(update);
-                updateStatement.setString(1,lockedState);
-                updateStatement.setString(2,username);
-                updateStatement.executeUpdate();
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Error on Updateing Data");
-        }*/
         return accountStatus;
     }//Locked account
 
@@ -217,7 +198,6 @@ public class StaffDAO {
         return status;
 
     }//used to create a new user object
-    /**/
     public static ObservableList<Staff> getAllStaff(){
         ObservableList<Staff> data= FXCollections.observableArrayList();//array holds the objects from the database
         try{
@@ -242,8 +222,6 @@ public class StaffDAO {
         }
     }//all the staff in the database in an array
 
-
-
     public static String updateRoleData(String username, String role ){
         String msg="";
         try{
@@ -263,27 +241,5 @@ public class StaffDAO {
         return msg;
     }
 
-    /*public static String deleteUser(String userName, String clause) {
-        String status = "";
-        try (Connection con =persistence.DBMySQL.getInstance().getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement("delete from Staff where UserName='?'")) {
-                ps.setString(1, clause);
-                ps.setString(2, userName);
-                ps.executeUpdate();
-                status = "Database updated";
-                System.out.println("database should update");
-            } catch (SQLException e) {
-                //  e.printStackTrace();
-                e.getErrorCode();
-                System.out.println("error");
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error on Updateing Data");
-            status= "Error on Updating Database";
-        }
-        return status;
-    }
-*/
+
 }

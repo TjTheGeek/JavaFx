@@ -56,7 +56,9 @@ public class RegisterController implements Initializable {
         showMessage("");
         confirmPassword(userName,pass1, pass2, pin, UserEmail);
 
+
     }
+
     private void confirmPassword(String UserName,String pass1, String pass2, String pin, String UserEmail){
         String message;
         // PWDSAME PWDLENGTH PWDDIGIT PWDCOMPROMISED
@@ -71,7 +73,7 @@ public class RegisterController implements Initializable {
         //from the email factory
       Email em1=ef.geEmail("EMAILC");
       boolean email=true;
-        if(em1.checkEmailChar(emailTextfield.getText())){
+        if(em1.checkEmailChar(UserEmail)){
             message= em1.getMessage();
             showMessage(message);
             System.out.println("email failed");
@@ -99,6 +101,46 @@ public class RegisterController implements Initializable {
             }
             else showMessage("Username Already Used");
         }
+    }
+    public boolean confirmPasswordForTest(String UserName,String pass1, String pass2, String pin, String UserEmail){
+        boolean message;
+        // PWDSAME PWDLENGTH PWDDIGIT PWDCOMPROMISED
+        //use of factory pattern
+        PasswordFactory pf = new PasswordFactory();
+        EmailFactory ef=new EmailFactory();
+        Password pwd1 = pf.getTest("PWDSAME");
+        Password pwd2 = pf.getTest("PWDLENGTH");
+        Password pwd3 = pf.getTest("PWDCOMPROMISED");
+        Password pwd4 = pf.getTest("PWDDIGIT");
+        Password pwd5=pf.getTest("PWDCASE");
+        //from the email factory
+      Email em1=ef.geEmail("EMAILC");
+      boolean email=true;
+        if(em1.checkEmailChar(UserEmail)){
+            System.out.println("email failed");
+            email=false;
+        }
+        List<Password> list = new ArrayList<Password>();
+        list.add(pwd3);
+        list.add(pwd4);
+        list.add(pwd1);
+        list.add(pwd5);
+        list.add(pwd2);
+        boolean pass=true;
+        for(Password p :list){
+            if(p.checkPassword(pass1,pass2)){
+                pass=false;
+            }
+        }
+
+        if (pass&&email){//if email and password are true try add to database
+            if(StaffDAO.addUser(UserName,pass1,pin,UserEmail)==1){
+                returnToLogin();
+            }
+            else showMessage("Username Already Used");
+        }
+        message=pass&&email;
+        return message;
     }
 /**/
     @FXML

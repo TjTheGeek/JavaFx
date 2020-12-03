@@ -5,7 +5,7 @@
     <classes>
       <class name="presentation.RegisterControllerTest">
         <methods>
-          <include name="testConfirmPassword"/>
+          <include name="testConfirmPasswordForTest"/>
         </methods>
       </class> <!-- presentation.RegisterControllerTest -->
     </classes>
