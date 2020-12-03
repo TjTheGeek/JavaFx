@@ -36,8 +36,7 @@ public class StaffDAO {
             String select = "select * from Staff where UserName=?";
             PreparedStatement st = con.prepareStatement(select);
             st.setString(1, userName);
-            ResultSet rs = st.executeQuery();
-            status=rs.next();
+            status = st.execute();
             con.close();
         } catch (SQLException e) {
             System.out.println(e);
@@ -46,12 +45,7 @@ public class StaffDAO {
 
     }//checks if username is in the database
 
-<<<<<<< Updated upstream
     private static int lockAttempts(String userName) throws SQLException {
-=======
-    private static int lockAttempts(String userName){
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
        int attempts=0;
         Connection con = persistence.DBMySQL.getInstance().getConnection();
         if(con==null){
@@ -59,19 +53,12 @@ public class StaffDAO {
         }
        try {
             String selectSt="Select * from Staff where UserName=?";
-=======
-        int attempts=0;
-        try {
-            Connection con = persistence.DBMySQL.getInstance().getConnection();
-            String selectSt="Select LockAttempt from Staff where UserName=?";
->>>>>>> Stashed changes
             PreparedStatement st = con.prepareStatement(selectSt);
             st.setString(1,userName);
             ResultSet rs=st.executeQuery();
             attempts=rs.getInt("LockAttempt");//this denies them access
             con.close();
             System.out.println(attempts);
-<<<<<<< Updated upstream
         }finally {
            try {
                con.close();
@@ -79,22 +66,7 @@ public class StaffDAO {
                throwables.printStackTrace();
            }
        }
-=======
-        }
-<<<<<<< Updated upstream
-       catch (Exception e) {
-            System.out.println(e);
-           System.out.println("LockaTTEMPT FAILED");
-        }
->>>>>>> Stashed changes
      return attempts;
-=======
-        catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("LockaTTEMPT FAILED");
-        }
-        return attempts;
->>>>>>> Stashed changes
     }//number of attempts
 
     public static boolean isLockAccount(String username){
@@ -108,16 +80,13 @@ public class StaffDAO {
             selectStatement.setString(2,lockedState);
             ResultSet rs = selectStatement.executeQuery();
             accountStatus=rs.next();
-            System.out.println(accountStatus);
            //if it returns a user then its locked
             con.close();
 
         }catch (Exception e){
                 System.out.println(e);
         }
-
-        return accountStatus;
-           /*  try{
+      /*  try{
             if(LockAttempts(username)>0){
                 accountStatus=false;
             }
@@ -135,6 +104,7 @@ public class StaffDAO {
             e.printStackTrace();
             System.out.println("Error on Updateing Data");
         }*/
+        return accountStatus;
     }//Locked account
 
     public static String updateLockedData(String userName, String lockedState){
@@ -201,9 +171,9 @@ public class StaffDAO {
                 }
                 con.close();
             }
-            catch(SQLException e){
+            catch(Exception e){
                 e.printStackTrace();
-                msg="Error updating Database";
+                msg="Error on Updateing Data";
             }
             }
         else {
