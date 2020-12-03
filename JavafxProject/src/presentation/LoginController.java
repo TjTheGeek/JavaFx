@@ -56,8 +56,7 @@ public class LoginController implements Initializable {
         if(usernameTextfield.getText().equals("") || passwordTextField.getText().equals("") ){
             showMessage("Enter valid Username and/or Password");
         }
-
-        if(validateUser(usernameTextfield.getText(), passwordTextField.getText())){//if the user is there
+        else if(validUser(usernameTextfield.getText(),passwordTextField.getText())){//if the user is there
             if(isLockAccount(usernameTextfield.getText())){//if its locked
                 showMessage("Account Blocked, Please Contact admin");
                 System.out.println("the if is running");
@@ -65,11 +64,13 @@ public class LoginController implements Initializable {
             else{
                 showMessage("Login successful");
                 String role = getRole(usernameTextfield.getText(), passwordTextField.getText());
+                updateLockedData(usernameTextfield.getText(),"UNLOCKED");
                 goToHomePage(role);
             }
         }// if the user exists and the password, and if the account is locked
 
-        else if(checkIfExists(usernameTextfield.getText())){//if the username exists
+        else if(checkIfExists(usernameTextfield.getText())){
+            //if the username exists
             /*if(isLockAccount(usernameTextfield.getText())){
                 showMessage("Account Blocked, Please Contact admin");
                 System.out.println("the elseif is running");
@@ -130,11 +131,11 @@ public class LoginController implements Initializable {
             ex.getCause();
         }
     }
-    private boolean validateUser(String name, String pwd){
+   /* private boolean validateUser(String name, String pwd){
 //validates of teh user is in the DB and the passwords and returns true or false
         boolean result = persistence.StaffDAO.validUser(name, pwd);
         return result;
-    }
+    }*/
     protected void reset(){
         usernameTextfield.setText("");
         passwordTextField.setText("");
