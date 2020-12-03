@@ -1,8 +1,9 @@
 const crypto = require('crypto');
 
-const secret = 'Security Principles';
+const secret = 'abc';
 
-const hash = crypto.createHmac('sha256', secret)
-                   .update('Help me')
+const hash = crypto.createHash("sha256")
+                   .update(secret)
                    .digest('hex');
+
 console.log(hash);
