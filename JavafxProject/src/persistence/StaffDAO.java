@@ -42,7 +42,11 @@ public class StaffDAO {
 
     }//checks if username is in the database
 
+<<<<<<< Updated upstream
     private static int lockAttempts(String userName){
+=======
+  /*  private static int lockAttempts(String userName) throws SQLException {
+>>>>>>> Stashed changes
        int attempts=0;
        try {
             Connection con = persistence.DBMySQL.getInstance().getConnection();
@@ -59,7 +63,26 @@ public class StaffDAO {
            System.out.println("LockaTTEMPT FAILED");
         }
      return attempts;
-    }//number of attempts
+    }//number of attempts*/
+  private static int lockAttempts(String userName){
+      int attempts=0;
+      try {
+          Connection con = persistence.DBMySQL.getInstance().getConnection();
+          String select = "select * from Staff where UserName=?";
+          PreparedStatement selectStatement = con.prepareStatement(select);
+          selectStatement.setString(1,userName);
+          ResultSet rs =selectStatement.executeQuery();
+          attempts= rs.getInt("LockAttempt"); // denies access to the user after all attempts are gone
+          con.close();
+          System.out.println(attempts);
+
+      }
+      catch (SQLException e) {
+          System.out.println(e);
+          System.out.println("getting Attempts FAILED");
+      }
+      return attempts;
+  }//number of attempts
 
     public static boolean isLockAccount(String username){
         boolean accountStatus=true;
@@ -148,7 +171,7 @@ public class StaffDAO {
     }
 
     public static String updateAttempts(String username){
-        String msg="";
+        String msg;
         if (!isLockAccount(username)){
             try{
                 msg="Password is wrong";
