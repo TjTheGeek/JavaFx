@@ -21,7 +21,7 @@ public class PasswordCompromised extends Password {
     public boolean checkPassword(String pass1, String pass2) {
         boolean result = false;
         String sha1 = "";
-        MessageDigest digest = null;
+        MessageDigest digest;
         try {
             digest = MessageDigest.getInstance("SHA-256");
             digest.reset();
