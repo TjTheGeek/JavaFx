@@ -113,7 +113,6 @@ public class AdminController implements Initializable {
             Staff s = e.getRowValue();
             e.getRowValue().setLock(e.getNewValue());
             msgLabel.setText(StaffDAO.updateLockedData(s.getUserName(), e.getNewValue().toString()));
-            System.out.println(e.getNewValue().toString());
             System.out.println("UserName" + s.getUserName() + "Locked" + e.getNewValue() + " attempts " + s.getRole());
             //refresh TabelView data after update;
             tableView.setItems(StaffDAO.getAllStaff());

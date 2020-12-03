@@ -17,7 +17,7 @@ CREATE TABLE `Staff` (
 
 INSERT INTO `Staff` VALUES 
 	(1,'admin','password',1234,'admin','UNLOCKED', 10,'admin@gmail.com'),
-    (2,'user','password',1111,'user','UNLOCKED', 10,'user@gmail.com'),
+    (2,'user','password',1111,'user','LOCKED', 10,'user@gmail.com'),
     (3,'super','password',2222,'super','UNLOCKED', 10,'admin@gmail.com');
 
 select * from Staff;

@@ -1,4 +1,4 @@
-package register;
+package emailChecker;
 
 
 public abstract class Email {

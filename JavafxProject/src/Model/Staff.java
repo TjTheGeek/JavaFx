@@ -15,9 +15,8 @@ public class Staff {
     }
     public Staff(String userName, String role, String locked, String lockAttempt) {
         UserName = userName;
-        LockAttempt = lockAttempt;
         Role = role;
-
+        LockAttempt = lockAttempt;
         this.lock = new SimpleObjectProperty<>(LOCK.valueOf(locked));
     }
     public String getUserName() {

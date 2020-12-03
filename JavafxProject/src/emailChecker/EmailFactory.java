@@ -1,4 +1,6 @@
-package register;
+package emailChecker;
+
+import register.Password;
 
 public class EmailFactory {
     public Email geEmail(String emailChecker){

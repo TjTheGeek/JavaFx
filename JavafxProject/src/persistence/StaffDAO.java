@@ -45,18 +45,18 @@ public class StaffDAO {
     private static int lockAttempts(String userName){
        int attempts=0;
        try {
-           Connection con = persistence.DBMySQL.getInstance().getConnection();
-           String selectSt="select * from staff where UserName=?";
-           PreparedStatement st = con.prepareStatement(selectSt);
-           st.setString(1,userName);
-           ResultSet rs=st.executeQuery();
-           rs.next();
-           attempts=rs.getInt("LockAttempt");//get the number of attempts from the column
-           con.close();
+            Connection con = persistence.DBMySQL.getInstance().getConnection();
+            String selectSt="Select * from Staff where UserName=?";
+            PreparedStatement st = con.prepareStatement(selectSt);
+            st.setString(1,userName);
+            ResultSet rs=st.executeQuery();
+            attempts=rs.getInt("LockAttempt");//this denies them access
+            con.close();
+            System.out.println(attempts);
         }
-       catch (SQLException e) {
+       catch (Exception e) {
             System.out.println(e);
-           System.out.println("Lock ATTEMPT FAILED");
+           System.out.println("LockaTTEMPT FAILED");
         }
      return attempts;
     }//number of attempts
@@ -94,7 +94,7 @@ public class StaffDAO {
         }
         catch(Exception e){
             e.printStackTrace();
-            System.out.println("Error on Updating Data");
+            System.out.println("Error on Updateing Data");
         }*/
         return accountStatus;
     }//Locked account
@@ -115,16 +115,14 @@ public class StaffDAO {
                 st = con.prepareStatement(updateSt);
                 st.setInt(1,LockAttempt);
                 st.setString(2,userName);
-                st.executeUpdate();
-                System.out.println("Attempts set to 10");
             }
             con.close();
             msg = "Database updated";
-            System.out.println("db updated");
+            System.out.println("dbupdated");
         }
         catch(Exception e){
             e.printStackTrace();
-            System.out.println("Error on Updating Data");
+            System.out.println("Error on Updateing Data");
             msg = "Error on Updating Database";
         }
         return msg;
@@ -143,7 +141,7 @@ public class StaffDAO {
         }
         catch (Exception e){
             e.printStackTrace();
-            System.out.println("Error on Updating Data");
+            System.out.println("Error on Updateing Data");
             msg = "Error on Updating Database";
         }
         return msg;
@@ -167,7 +165,7 @@ public class StaffDAO {
             }
             catch(Exception e){
                 e.printStackTrace();
-                msg="Error on Updating Data";
+                msg="Error on Updateing Data";
             }
             }
         else {
@@ -175,6 +173,25 @@ public class StaffDAO {
         }
         return  msg;
     }//decrements the attempts 10>>0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static String getRole(String name, String password) {
         String role = "";
@@ -197,6 +214,7 @@ public class StaffDAO {
 
     }
 
+
     public static int addUser(String userName, String userPass, String userPin, String userEmail) {
         int status= 0;
         try {
@@ -216,6 +234,7 @@ public class StaffDAO {
         return status;
 
     }//used to create a new user object
+
     /**/
     public static ObservableList<Staff> getAllStaff(){
         ObservableList<Staff> data= FXCollections.observableArrayList();//array holds the objects from the database
@@ -241,8 +260,10 @@ public class StaffDAO {
         }
     }//all the staff in the database in an array
 
+
+
     public static String updateRoleData(String username, String role ){
-        String msg;
+        String msg="";
         try{
             Connection con =persistence.DBMySQL.getInstance().getConnection();
             Statement st = con.createStatement();
@@ -252,7 +273,7 @@ public class StaffDAO {
            }
             catch (Exception e){
                 e.printStackTrace();
-                System.out.println("Error on Updating Data");
+                System.out.println("Error on Updateing Data");
                 msg = "Error on Updating Database";
            }
         return msg;
@@ -275,7 +296,7 @@ public class StaffDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error on Updating Data");
+            System.out.println("Error on Updateing Data");
             status= "Error on Updating Database";
         }
         return status;
