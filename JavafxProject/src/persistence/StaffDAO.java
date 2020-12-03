@@ -115,6 +115,8 @@ public class StaffDAO {
                 st = con.prepareStatement(updateSt);
                 st.setInt(1,LockAttempt);
                 st.setString(2,userName);
+                st.executeUpdate();
+                System.out.println("Attempts set to 10");
             }
             con.close();
             msg = "Database updated";
