@@ -1,5 +1,4 @@
-package emailChecker;
-import emailChecker.Email;
+package register;
 
 import java.util.regex.Pattern;
 public class CheckEmail extends Email {

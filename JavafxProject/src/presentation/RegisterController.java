@@ -1,7 +1,6 @@
 package presentation;
-import emailChecker.CheckEmail;
-import emailChecker.Email;
-import emailChecker.EmailFactory;
+import register.Email;
+import register.EmailFactory;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
